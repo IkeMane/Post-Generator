@@ -19,7 +19,7 @@ def save_file(filepath, content):
         outfile.write(content)
 
 
-def chatgpt_completion(messages, temp=0, model="gpt-4"):
+def chatgpt_completion(messages, temp=0, model="gpt-3.5-turbo"):
     max_retry = 7
     retry = 0
     while True:
@@ -54,7 +54,7 @@ if __name__ == "__main__":
             chapter = open_file(os.path.join(post_ideas, file_name))
             prompt = open_file('prompt_generate_post.txt').replace('<<INPUT>>', chapter)
             conversation = list()
-            conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook post_ideass that will always provide creative, and engaging content.'''})
+            conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook posts that will always provide creative, and engaging content.'''})
             conversation.append({'role': 'user', 'content': prompt})
             summary = chatgpt_completion(conversation)
             print('\n\n\n\n', summary)

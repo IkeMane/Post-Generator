@@ -19,7 +19,7 @@ def save_file(filepath, content):
         outfile.write(content)
 
 
-def chatgpt_completion(messages, temp=0, model="gpt-4"):
+def chatgpt_completion(messages, temp=0, model="gpt-3.5-turbo"):
     max_retry = 7
     retry = 0
     while True:
@@ -43,10 +43,10 @@ def chatgpt_completion(messages, temp=0, model="gpt-4"):
 if __name__ == "__main__":
     openai.api_key = open_file('key_openai.txt')
     summaries_dir = "post_ideas"
-    prompt = "Starting from the first ever post generate 50 Facebook post ideas for a _______ business."
+    prompt = "Starting from the first ever welcome post. Generate 5 Facebook post ideas starting from the welcome post for a brand new Lake of the Ozarks App."
     conversation = list()
     conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook posts that will always provide creative, and engaging content.'''})
     conversation.append({'role': 'user', 'content': prompt})
     summary = chatgpt_completion(conversation)
     print('\n\n\n\n', summary)
-    save_file(os.path.join(summaries_dir), summary)
+    save_file(os.path.join(summaries_dir,"post_ideas.txt"), summary)
