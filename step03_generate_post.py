@@ -40,7 +40,7 @@ def chatgpt_completion(messages, temp=0, model="gpt-3.5-turbo"):
             sleep(2 ** (retry - 1) * 5)
 
 
-if __name__ == "__main__":
+def main():
     openai.api_key = open_file('key_openai.txt')
     post_ideas = "post_ideas"
     post = "post"
