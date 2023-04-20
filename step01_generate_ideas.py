@@ -19,7 +19,7 @@ def save_file(filepath, content):
         outfile.write(content)
 
 
-def chatgpt_completion(messages, temp=0, model="gpt-3.5-turbo"):
+def chatgpt_completion(messages, temp=0, model="gpt-4"):
     max_retry = 7
     retry = 0
     while True:
@@ -43,9 +43,11 @@ def chatgpt_completion(messages, temp=0, model="gpt-3.5-turbo"):
 def main():
     openai.api_key = open_file('key_openai.txt')
     summaries_dir = "post_ideas"
-    prompt = "Starting from the first ever welcome post. plan a campagn with 5 Facebook engagment ideas starting from the welcome post for a brand new Lake of the Ozarks App."
+    prompt = input("Explain your campaign: ")
+    date = input("What date would you like to start your campaign: ")
     conversation = list()
-    conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook posts that will always provide creative, and engaging help.'''})
+    conversation.append({'role': 'system', 'content': f'''I am a social media campaign planner for Facebook I will always provide creative and engaging campaign ideas. I do not generate post but I can help you generate ideas for your posts. Each Idea I break down into 3 parts: 1. The post idea 2. The post image idea. 3.The date of the post starting from {date}. **Each idea is sepperated by two line breaks or spaces away from the other one**'''})
+    conversation.append({'role': 'assistant', 'content': '''Explain your campaign: '''})
     conversation.append({'role': 'user', 'content': prompt})
     summary = chatgpt_completion(conversation)
     print('\n\n\n\n', summary)

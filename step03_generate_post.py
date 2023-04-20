@@ -54,7 +54,7 @@ def main():
             chapter = open_file(os.path.join(post_ideas, file_name))
             prompt = open_file('prompt_generate_post.txt').replace('<<INPUT>>', chapter)
             conversation = list()
-            conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook posts that will always provide creative, and engaging content.'''})
+            conversation.append({'role': 'system', 'content': '''I am a content generator for Facebook posts that will always provide creative, and engaging content. I generate posts based on the ideas provided me. Each post I generate is broken down into 3 parts: 1. The post 2. The post image idea 3. Hashtags. **Each idea is sepperated by two line breaks or spaces away from the other one**'''})
             conversation.append({'role': 'user', 'content': prompt})
             summary = chatgpt_completion(conversation)
             print('\n\n\n\n', summary)
